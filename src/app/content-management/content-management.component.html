@@ -1,0 +1,120 @@
+<!--navtablar-->
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+      role="tab" aria-controls="home-tab-pane" aria-selected="true">Contents</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+      role="tab" aria-controls="profile-tab-pane" aria-selected="false">License</button>
+  </li>
+</ul>
+<!--Content tab içi-->
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <form [formGroup]="contentForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">Content Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">Poster Url</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" formControlName="posterUrl"
+          aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">Video Url</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          formControlName="videoUrl">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <button mat-flat-button color="primary" (click)="addContent()" [disabled]="contentForm.invalid">{{ 'Ekle'
+        }}</button>
+      <!--<button type="submit" class="btn btn-primary">Add</button>-->
+      <h2>Content List</h2>
+      <table class="table table-stipped">
+        <thead>
+          <tr>
+            <th>Content Id</th>
+            <th>Content Name</th>
+            <th>Content Status</th>
+            <th>Content License</th>
+            <th>Poster Url</th>
+            <th>Video Url</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let content of Contents">
+            <td>{{content.id}}</td>
+            <td>{{content.name}}</td>
+            <td>{{content.status}}</td>
+            <td>{{content.licenses}}</td>
+            <td>{{content.posterUrl}}</td>
+            <td>{{content.videoUrl}}</td>
+            <td>
+              <button (click) = "updatecontent(content.id ?? 0)" class="btn btn-info"> Update</button>
+            </td>
+            <button (click)="deleteContent(content.id ?? 0)" class="btn btn-info">Delete</button>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+    <!--license tab-->
+    <form [formGroup]="licenseForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">License Name</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          formControlName="name">
+        <div id="emailHelp" class="form-text">.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">License startTime</label>
+        <input type="date" class="form-control" id="startTime" aria-describedby="date"
+          formControlName="startTime">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">License endTime</label>
+        <input type="date" class="form-control" id="endTime" aria-describedby="date"
+          formControlName="endTime">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+
+
+
+      <button mat-flat-button color="primary" (click)="addLicense()" [disabled]="licenseForm.invalid">{{ 'Ekle'
+        }}</button>
+      <h2>License List</h2>
+      <table class="table table-stipped">
+        <thead>
+          <tr>
+            <th>License Id</th>
+            <th>License Name</th>
+            <th>License StartTime</th>
+            <th>License endTıme</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let license of Licenses">
+            <td>{{license.id}}</td>
+            <td>{{license.name}}</td>
+            <td>{{license.startTime | date:'MM/dd/yyyy' }}</td>
+            <td>{{license.endTime | date:'MM/dd/yyyy'}}</td>
+            <button (click)="deleteLicense(license.id ?? 0)" class="btn btn-info">Delete</button>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+

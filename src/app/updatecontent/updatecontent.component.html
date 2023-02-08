@@ -1,0 +1,20 @@
+
+    <div class="container">
+      <form [formGroup]="selectForm">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Kapasite</mat-label>
+          <mat-select [(value)]="selectForm.value.license" formControlName="license">
+            <mat-option [value]='license' *ngFor="let license of licenseList">
+              {{ license.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <button (click)="addContentLic()" mat-flat-button color="primary">Ekle</button>
+
+      <br>
+
+      <p>liste</p>
+    </div>
+
+
