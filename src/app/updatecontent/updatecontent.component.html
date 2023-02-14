@@ -2,7 +2,7 @@
     <div class="container">
       <form [formGroup]="selectForm">
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Kapasite</mat-label>
+          <mat-label>License</mat-label>
           <mat-select [(value)]="selectForm.value.license" formControlName="license">
             <mat-option [value]='license' *ngFor="let license of licenseList">
               {{ license.name }}
